@@ -1,0 +1,110 @@
+2a)
+
+###VEDIO
+
+ This Python program figures out the unknown states of an object moving/accelerating in a straight line. The program takes the acceleration and two of displacement/time/initial velocity/final velocity as an input, it then calculates the remaining two unknowns by applying a certain set of equations, chosen based on the available inputs.
+
+###################################################################
+2b) 
+The first thing I did after deciding to make a program to solve equations for moving objects, was to model the equations on paper to figure out what equations would I need and how many different situations I have to account for in the program.
+
+
+##################################################################
+2c) 
+______________________________________
+
+if args.plot == True :
+    timeValues = []
+    dispValues = []
+    veloValues = []
+
+    for i in range(40):
+        timeValues.append(i * 5)
+        t = timeValues[i]
+        v = eq1()
+        x = eq2()
+        veloValues.append(v)
+        dispValues.append(x)
+
+    plt.figure('Displacement vs Time')
+    plt.plot(timeValues, dispValues)
+    plt.ylabel('Displacement')
+    plt.xlabel('Time')
+    
+    plt.figure('Velocity vs Time')
+    plt.plot(timeValues, veloValues, 'r')
+    plt.ylabel('Velocity')
+    plt.xlabel('Time')
+
+    plt.figure('Displacement vs Time')
+    plt.show(block=False)
+    plt.figure('Velocity vs Time')
+    plt.show()
+
+else:
+    t = round(t, 3)
+    x = round(x, 3)
+    v = round(v, 3)
+    a = round(a, 3)
+    iv = round(iv, 3)
+
+    print ("\nAcceleration = ", a,
+           "\nInitial Velocity = ", iv,
+           "\nFinal Velocity = ", v,
+           "\nDisplacement = ", x,
+           "\nTime = ", t, "\n")
+
+
+______________________________________
+This code segment determines weather the user wants to plots a graphical representation of the motion. And if he/she wants to, it creates samples for time values (x-axis of the graph), by calculating the multiples of 5 for 40 times. Then it calculates the corresponding displacement & velocity of the moving object at that time. But if the user don't want them plotted, it rounds the results of the calculations to an eye appealing 3 decimal digits, and print them to the user. This algorithm make use of the "eq1" and "eq2" methods to calculate the values which will be graphed. The "eq1" method calculates the velocity of the object given a certain acceleration, initial velocity, and time.
+
+
+########################################################################
+2d)
+___________________________________________
+def eq1():
+    v = vo + a * t
+    return v
+def eq2():
+    x = vo * t + 0.5 * a * t**2
+    return x
+def eq3():
+    t = (v - vo) / a
+    return t
+def eq4():
+    v = sqrt(vo**2 + 2 * a * x)
+    return v
+def eq5():
+    vo = (x - 0.5 * a * t**2) / t
+    return vo
+def eq6():
+    vo = sqrt(v**2 - 2 * a * x)
+    return vo
+def eq7():
+    vo = v - a * t
+    return vo
+
+if vo and v:
+    t = eq3()
+    x = eq2()
+elif vo and t:
+    v = eq1()
+    x = eq2()
+elif vo and x:
+    v = eq4()
+    t = eq3()
+elif x and t:
+    vo = eq5()
+    v = eq1()
+elif v and x:
+    vo = eq6()
+    t = eq3()
+elif v and t:
+    vo = eq7()
+    x = eq2()
+else:
+    print("Something went wrong!!!")
+ _____________________________________________
+
+
+ Abstracting the complex equations behind simple functions significantly decreased the complexity of the program. Also it decreased the chances of unobvious typos in the equations, as I wrote the 7 equations just once, instead of writing (more than) 12 equations. Also that way if I discovered a mathematical mistake in one of the equations, I can only fix it once, instead of searching all the if conditions for repeated equations to fix them.
