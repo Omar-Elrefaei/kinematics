@@ -2,7 +2,7 @@
 
 ###VEDIO
 
- This Python program figures out the unknown states of an object moving/accelerating in a straight line. The program takes the acceleration and two of displacement/time/initial velocity/final velocity as an input, it then calculates the remaining two unknowns by applying a certain set of equations, chosen based on the available inputs.
+ This Python program figures out the unknown states of an object moving/accelerating in a straight line. The program takes the acceleration and two of displacement/time/initial velocity/final velocity as an input, it then calculates the remaining two unknowns by applying a certain set of equations, chosen based on the available inputs. I then started implimenting the program step by step while teating each one independently. I started out coding the mathematical equations and the braches which th
 
 ###################################################################
 2b) 
