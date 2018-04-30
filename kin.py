@@ -54,23 +54,22 @@ def eq7():
     iv = v - a * t
     return iv
 
-
-if (iv or v) != None :
+if ( iv != None ) and ( v != None ) :
     t = eq3()
     x = eq2()
-elif (iv or t) != None :
+elif ( iv != None ) and ( t != None ) :
     v = eq1()
     x = eq2()
-elif (iv or x) != None :
+elif ( iv != None ) and ( x != None ) :
     v = eq4()
     t = eq3()
-elif (x or t) != None :
+elif ( x != None ) and ( t != None ) :
     iv = eq5()
     v = eq1()
-elif (v or x) != None :
+elif ( v != None ) and ( x != None ) :
     iv = eq6()
     t = eq3()
-elif (v or t) != None :
+elif ( v != None ) and ( t != None ) :
     iv = eq7()
     x = eq2()
 else:

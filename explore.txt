@@ -1,0 +1,5 @@
+#Image
+Cloud storage enables customers to easily backup their data, sync it between all their devices, and share it with their friends & colleges.
+
+2A) (Row 2)
+Cloud storage is usually a product provided by big companies for end users to allow them to store their files in the companys servers, so the the user can access his/her data from any of his devices, taking advantage that people are connected to the internet most of the time. The service is most of the time accompanied with other features like synchronizing local data across all devices, easy sharing with limited permissions, collaborating with others on editing the same file at the same time, and backup services for *apocalyptic* situations.

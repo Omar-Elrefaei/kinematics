@@ -1,13 +1,17 @@
 2a)
 
+
 ###VEDIO
 
- This Python program figures out the unknown states of an object moving/accelerating in a straight line. The program takes the acceleration and two of displacement/time/initial velocity/final velocity as an input, it then calculates the remaining two unknowns by applying a certain set of equations, chosen based on the available inputs. I then started implimenting the program step by step while teating each one independently. I started out coding the mathematical equations and the braches which th
+ This Python program figures out the unknown states of an object moving/accelerating in a straight line. The program takes the acceleration and two of displacement/time/initial velocity/final velocity as an input, it then calculates the remaining two unknowns by applying a certain set of equations, chosen based on the available inputs.
+
 
 ###################################################################
 2b) 
-The first thing I did after deciding to make a program to solve equations for moving objects, was to model the equations on paper to figure out what equations would I need and how many different situations I have to account for in the program.
-
+The first thing I did after deciding to make a program to solve equations for moving objects, was to model the equations on paper to figure out what equations would I need and how many different situations I have to account for in the program. I then started implementing the program step by step while testing each one independently. I started out coding the mathematical equations and the branches which the program will execute depending on user input. After testing that successfully, I went on writing the user facing functionality to enable the user to provide his arguments on the command line and to require him to provide a value for acceleration.
+This is when I faced the first difficulty; when testing various inputs, the program crashed when it was faced with a -common- value of "-9.8" for acceleration. After a little bit of debugging, I figured out that because the program expected an integer value, it crashed when a float was provided as an input. So I mitigated that by specifying float as the expected type.
+Lastly, I proceeded with implementing the plotting feature, and writing the main if condition that decide weather the user wants to view values of all the variables at a certain time, or plot the graph of displacement/acceleration against time.
+The second difficulty was revealed when I was testing the application with my family; when faced with a 0 as an input, the program behaved strangely, I suspected the where something wrong with the if conditions. So I started debugging, and it turns out that the "if x and t:" does not pass if x = 0, so I changed it to "if (iv != None ) and ( v != None ):" to explicitly narrow the condition, and that solved the problem.
 
 ##################################################################
 2c) 
@@ -84,26 +88,28 @@ def eq7():
     vo = v - a * t
     return vo
 
-if vo and v:
+
+if ( iv != None ) and ( v != None ) :
     t = eq3()
     x = eq2()
-elif vo and t:
+elif ( iv != None ) and ( t != None ) :
     v = eq1()
     x = eq2()
-elif vo and x:
+elif ( iv != None ) and ( x != None ) :
     v = eq4()
     t = eq3()
-elif x and t:
-    vo = eq5()
+elif ( x != None ) and ( t != None ) :
+    iv = eq5()  
     v = eq1()
-elif v and x:
-    vo = eq6()
+elif ( v != None ) and ( x != None ) :
+    iv = eq6()
     t = eq3()
-elif v and t:
-    vo = eq7()
+elif ( v != None ) and ( t != None ) :
+    iv = eq7()
     x = eq2()
 else:
-    print("Something went wrong!!!")
+    print("User input is not satisfying")
+    exit()
  _____________________________________________
 
 
