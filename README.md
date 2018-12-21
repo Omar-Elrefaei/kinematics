@@ -20,4 +20,3 @@ Make sure the following packages are installed:
 * `argparse`
 * `matplotlib`
 
-#### PS: This was my Project for AP Computer Science Principles 
