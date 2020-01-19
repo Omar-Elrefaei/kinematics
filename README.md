@@ -12,6 +12,8 @@ This python script takes as an input any 3/6 of possible inputs:
     
 and spits out the remaining 3 variables along with optional graphes of the moving object with the `--plot` flag
 
+![](preview.apng)
+
 ## Dependencies
 This script should be compatiable with python 2.x and 3.x 
 
