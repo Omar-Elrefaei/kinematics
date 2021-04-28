@@ -21,4 +21,4 @@ Make sure the following packages are installed:
 
 * `argparse`
 * `matplotlib`
-
+* `numpy`
