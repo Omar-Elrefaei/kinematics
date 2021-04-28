@@ -1,24 +1,32 @@
-import argparse
 from math import sqrt
+
+import argparse
+import numpy as np
 import matplotlib.pyplot as plt
 
 parser = argparse.ArgumentParser()
 
-parser.add_argument('-a'        , help='Acceleration is required'       ,type=float   ,required=True)
-parser.add_argument('-x'        , help='Displacement is optional'       ,type=float)
-parser.add_argument('-iv'       , help='Initial velocity is optional'   ,type=float)
-parser.add_argument('-v'        , help='Velocity is optional'           ,type=float)
-parser.add_argument('-t'        , help='Time is optional'               ,type=float)
-parser.add_argument('--plot' 
-    , help='Plot the Graphs of the Displacement & Velocity against time', action="store_true")
+parser.add_argument("-a",
+                    help="Acceleration is required",
+                    type=float,
+                    required=True)
+parser.add_argument("-x", help="Displacement is optional", type=float)
+parser.add_argument("-vi", help="Initial velocity is optional", type=float)
+parser.add_argument("-vf", help="Velocity is optional", type=float)
+parser.add_argument("-t", help="Time is optional", type=float)
+parser.add_argument(
+    "--plot",
+    help="Plot the Graphs of the Displacement & Velocity against time",
+    action="store_true")
 
 args = parser.parse_args()
 
 a = args.a
 x = args.x
 t = args.t
-v = args.v
-iv = args.iv
+v = args.vf
+iv = args.vi
+
 
 def eq1():
     v = iv + a * t
@@ -26,7 +34,7 @@ def eq1():
 
 
 def eq2():
-    x = iv * t + 0.5 * a * t**2
+    x = (iv * t) + (0.5 * a * t**2)
     return x
 
 
@@ -54,54 +62,57 @@ def eq7():
     iv = v - a * t
     return iv
 
-if ( iv != None ) and ( v != None ) :
+
+if iv and v:
     t = eq3()
     x = eq2()
-elif ( iv != None ) and ( t != None ) :
+elif iv and t:
     v = eq1()
     x = eq2()
-elif ( iv != None ) and ( x != None ) :
+elif iv and x:
     v = eq4()
     t = eq3()
-elif ( x != None ) and ( t != None ) :
+elif x and t:
     iv = eq5()
     v = eq1()
-elif ( v != None ) and ( x != None ) :
+elif v and x:
     iv = eq6()
     t = eq3()
-elif ( v != None ) and ( t != None ) :
+elif v and t:
     iv = eq7()
     x = eq2()
 else:
-    print("User input is not satisfying")
+    print("User input is not satisfactory")
     exit()
 
-if args.plot == True :
-    timeValues = []
+# Plotting
+if args.plot is True:
     dispValues = []
     veloValues = []
+    timeValues = np.linspace(0, t, 10)
 
-    for i in range(40):
-        timeValues.append(i * 5)
-        t = timeValues[i]
+    for i in timeValues:
+        t = i
         v = eq1()
         x = eq2()
         veloValues.append(v)
         dispValues.append(x)
 
-    plt.figure('Displacement vs Time')
+    plt.figure("Displacement vs Time")
     plt.plot(timeValues, dispValues)
-    plt.ylabel('Displacement')
-    plt.xlabel('Time')
-    
-    plt.figure('Velocity vs Time')
-    plt.plot(timeValues, veloValues, 'r')
-    plt.ylabel('Velocity')
-    plt.xlabel('Time')
+    plt.ylabel("Displacement")
+    plt.xlabel("Time")
+    plt.grid(True)
 
-    plt.figure('Displacement vs Time')
+    plt.figure("Velocity vs Time")
+    plt.plot(timeValues, veloValues, "r")
+    plt.ylabel("Velocity")
+    plt.xlabel("Time")
+    plt.grid(True)
+
+    plt.figure("Displacement vs Time")
     plt.show(block=False)
-    plt.figure('Velocity vs Time')
+    plt.figure("Velocity vs Time")
     plt.show()
 
 else:
@@ -111,8 +122,14 @@ else:
     a = round(a, 3)
     iv = round(iv, 3)
 
-    print ("\nAcceleration = ", a,
-           "\nInitial Velocity = ", iv,
-           "\nFinal Velocity = ", v,
-           "\nDisplacement = ", x,
-           "\nTime = ", t, "\n")
+    # Printing
+    string = ""
+    spacing = 18
+    vars = [a, iv, v, x, t]
+    names = ["Acceleration", "Initial Velocity",
+             "Final Velocity", "Displacement", "Time"]
+
+    def myprint(name, var):
+        return("\n" + name + "\t=\t" + str(var))
+
+    print(''.join(list(map(myprint, names, vars))).expandtabs(spacing))
