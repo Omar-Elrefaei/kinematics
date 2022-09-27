@@ -1,3 +1,5 @@
+> **Employers please note: this code was a high school project in 2018 and is not a fair representation of my current skills**
+
 # Kinematics
 This is your Swiss Army Knife for all calculations involving Projectiles or Kinamatic equations.
 
